@@ -1,24 +1,17 @@
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    s = input()
-
-    p = [0]*n
-    a = set()
-
-    for i in range(n):
-        a.add(s[i])
-        p[i] = len(a)
-
-    q = [0]*n
-    b = set()
-
-    for i in range(n-1, -1, -1):
-        b.add(s[i])
-        q[i] = len(b)
-
-    r = 0
-    for i in range(n-1):
-        r = max(r, p[i] + q[i+1])
-
-    print(r)
+from collections import Counter
+t=int(input())
+for i in range(t):
+    n=int(input())
+    s=input()
+    se=set()
+    d=Counter(s)
+    m=0
+    
+    for x in s:
+        se.add(x)
+        d[x]-=1
+        if d[x]==0:
+            del d[x]
+        
+        m=max(m, len(se)+len(d))
+    print(m)
